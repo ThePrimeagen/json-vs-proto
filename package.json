@@ -4,9 +4,11 @@
     "description": "",
     "main": "index.js",
     "scripts": {
-        "clean": "rm -rf dist build && mkdir -p build/gen",
-        "protoc": "protoc --plugin=protoc-gen-js=./node_modules/protoc-gen-js/bin/protoc-gen-js --proto_path=proto --js_out=import_style=commonjs,binary:build/gen proto/lolomo.proto",
-        "build": "run-s clean protoc tsc"
+        "clean": "rm -rf dist build && mkdir -p build/gen && rm -rf src/proto && mkdir -p src/proto",
+        "protoc": "protoc --plugin=./node_modules/.bin/protoc-gen-ts_proto --ts_proto_out=. ./proto/lolomo.proto",
+        "ready-proto": "mv build/gen/* src/proto/ && rm -rf build",
+        "tsc": "tsc",
+        "build": "run-s clean protoc tsc ready-proto"
     },
     "keywords": [],
     "author": "",
@@ -17,6 +19,8 @@
         "typescript": "^5.0.4"
     },
     "dependencies": {
-        "npm-run-all": "^4.1.5"
+        "google-protobuf": "^3.21.2",
+        "npm-run-all": "^4.1.5",
+        "ts-proto": "^1.146.0"
     }
 }
