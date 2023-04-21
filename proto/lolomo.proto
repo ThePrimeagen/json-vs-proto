@@ -1,0 +1,45 @@
+
+//export type Lolomo = {
+//    lists: List[]
+//    id: string,
+//}
+//
+//export type List = {
+//    videos: Video[],
+//    id: string,
+//}
+//
+//export type Video = {
+//    id: number,
+//    title: string,
+//    description: string,
+//    duration: number,
+//    boxArt: string,
+//    rating: number,
+//}
+// take these typescript types and translate them to protobufs
+
+syntax = "proto3";
+
+package lolomo;
+
+message Lolomo {
+    repeated List lists = 1;
+    string id = 2;
+}
+
+message List {
+    repeated Video videos = 1;
+    string id = 2;
+}
+
+message Video {
+    int32 id = 1;
+    string title = 2;
+    string description = 3;
+    int64 duration = 4;
+    string boxArt = 5;
+    int32 rating = 6;
+}
+
+
